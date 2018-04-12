@@ -18,10 +18,12 @@ const path = './public/uploads';
 fs.readdir(path, (err, items) => {
     let imageDisplay = [];
     for (let i = 0; i < items.length; i++) {
+        if (items[i] != ".DS_Store") {
         imageDisplay += `<img src= /uploads/${items[i]}>`;
-    }
-    res.send(`<h1>Welcome to Kenziegram!</h1>
+    }}
+    res.send(` <link rel="stylesheet" type="text/css" media="screen" href="app.css"/>
     <body>
+    <h1>Welcome to Kenziegram!</h1>
     <form action="http://localhost:3000/upload" enctype="multipart/form-data" method="POST">
         <input type="file" name="pic" accept="image/*">
         <input type="submit">
