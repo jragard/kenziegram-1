@@ -1,7 +1,39 @@
 body {
-    /* display: flex; */
+    display: flex;
+    flex-direction: column;
 }
+
 img {
     height: 300px;
     width: 300px;
+}
+
+#uploadBut {
+    border-radius: 25px;
+    height: 30px;
+    width: 70px;
+    font-size: 10pt;
+    font-weight: bold;
+    color: white;
+    background-color: cornflowerblue;
+}
+
+#uploadMessage {
+    font-size: 30px;
+    font-weight: bold;
+    color: deepskyblue;
+}
+
+h1 {
+    text-align: center;
+}
+
+#uploadForm {
+    align-self: center;
+}
+
+#imageDisplay {
+    display: flex;
+    align-self: center;
+    align-content: space-between;
 }

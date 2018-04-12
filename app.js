@@ -23,10 +23,10 @@ fs.readdir(path, (err, items) => {
     }}
     res.send(` <link rel="stylesheet" type="text/css" media="screen" href="app.css"/>
     <body>
-    <h1>Welcome to Kenziegram!</h1>
-    <form action="http://localhost:3000/upload" enctype="multipart/form-data" method="POST">
-        <input type="file" name="pic" accept="image/*">
-        <input type="submit">
+    <h1>Kenziegram</h1>
+    <form id= "uploadForm" action="http://localhost:3000/upload" enctype="multipart/form-data" method="POST">
+        <input id="fileSelect" type="file" name="pic" accept="image/*">
+        <input id="uploadBut" type="submit" value="Upload">
         
     </form>
     <div id="imageDisplay">${imageDisplay}</div>
@@ -35,7 +35,7 @@ fs.readdir(path, (err, items) => {
 });
 
 app.post('/upload', upload.single('pic'), (req, res, next) => {
-    res.send('Uploaded file! <form action="http://localhost:3000" method="get"><input type="submit" value="Return to gallery"></form>')}
+    res.send('<p id="uploadMessage">Uploaded photo! </p><form action="http://localhost:3000" method="get"><input type="submit" value="Return to gallery"></form>')}
     );
 
 
