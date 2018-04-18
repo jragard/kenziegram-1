@@ -40,7 +40,8 @@ app.post('/latest', (req, res) => {
                 }
             } 
         })
-        res.send(response);
+        console.log(response);
+        res.send(JSON.stringify(response));
     })  
 });
 
