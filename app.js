@@ -11,15 +11,37 @@ const app = express();
 
 const port = 3000;
 
+const path = './public/uploads';
+
 app.use(express.static('./public/uploads'));
 app.use(express.static('./public'));
 app.set('view engine', 'pug');
+app.use(express.json());
 
 app.get('/', (req, res) => {
-const path = './public/uploads';
-fs.readdir(path, (err, items) => {
-    res.render('index', {title: 'Kenzigram', images: items});
+    fs.readdir(path, (err, items) => {
+        res.render('index', {title: 'Kenzigram', images: items});
+    });
 });
+
+app.post('/latest', (req, res) => {
+    console.log(req.body)
+    fs.readdir(path, (err, items) => {
+        var response = {
+            "images": [],
+            "timestamp": 0,
+        };
+        items.forEach(item => {
+            var modified = fs.statSync(path).mtimeMs;
+            if(modified > req.body.after) {
+                if(item != ".DS_Store") {
+                response.images.push(item);
+                response.timestamp = modified;
+                }
+            } 
+        })
+        res.send(response);
+    })  
 });
 
 app.post('/upload', upload.single('pic'), (req, res, next) => {
