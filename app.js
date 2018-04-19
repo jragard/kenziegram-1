@@ -20,28 +20,29 @@ app.use(express.json());
 
 app.get('/', (req, res) => {
     fs.readdir(path, (err, items) => {
-        res.render('index', {title: 'Kenzigram', images: items});
+        res.render('index', {title: 'Kenziegram', "images": items});
     });
 });
+latestResponse = {
+    "latestImages": [],
+    "timestamp": 0,
+};
 
 app.post('/latest', (req, res) => {
-    console.log(req.body)
     fs.readdir(path, (err, items) => {
-        var response = {
-            "images": [],
-            "timestamp": 0,
-        };
         items.forEach(item => {
-            var modified = fs.statSync(path).mtimeMs;
+            if(item != ".DS_Store") {
+            var modified = fs.statSync(`./public/uploads/${item}`).mtimeMs;
             if(modified > req.body.after) {
-                if(item != ".DS_Store") {
-                response.images.push(item);
-                response.timestamp = modified;
+                latestResponse.latestImages.push(item);
                 }
-            } 
-        })
-        console.log(response);
-        res.send(JSON.stringify(response));
+                if (latestResponse.timestamp < modified) {  
+                    latestResponse.timestamp = modified;
+                    }   
+            }
+        })    
+        res.send(JSON.stringify(latestResponse));
+        latestResponse.latestImages = [];
     })  
 });
 

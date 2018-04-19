@@ -1,4 +1,5 @@
 html
+    title= title
     head
         link(rel="stylesheet" href="kenziegram.css")
     body
@@ -8,7 +9,7 @@ html
             input(id="uploadBut" type="submit" value="Upload")
 
     #imageDisplay
-        each img in images
-            if (img != ".DS_Store")
-                img(src=img, alt="")
+        //- each img in images
+        //-     if (img != ".DS_Store")
+        //-         img(src=img)
 script(src='kenzie.js')
