@@ -30,14 +30,15 @@ function fetchImages() {
             if (!response.ok) {
                 errors++;
                 console.log("Connection Timeout");
+                if (errors == 2) {
+                    clearTimeout(startPoll);
+                    alert("Lost connection with server!");
+                }
             }
             
         })
     startPoll = setTimeout(fetchImages, 5000);
-    if (errors == 2) {
-        clearTimeout(startPoll);
-        alert("Lost connection with server!");
-    }
+    
 }
 if(errors < 2) {
 fetchImages();
