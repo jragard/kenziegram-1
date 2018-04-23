@@ -4,12 +4,10 @@ html
         link(rel="stylesheet" href="kenziegram.css")
     body
         h1= title
-        form(id= "uploadForm" action="http://localhost:3000/upload" enctype="multipart/form-data" method="POST")
+        form(id= "uploadForm" action="/upload" enctype="multipart/form-data" method="POST")
             input(name="pic", type="file",id="fileSelect", accept="image/*")
             input(id="uploadBut" type="submit" value="Upload")
 
     #imageDisplay
-        //- each img in images
-        //-     if (img != ".DS_Store")
-        //-         img(src=img)
+        
 script(src='kenzie.js')

@@ -49,7 +49,4 @@ app.post('/upload', upload.single('pic'), (req, res, next) => {
     res.render('upload');
 });
 
-
-
-
 app.listen(port);

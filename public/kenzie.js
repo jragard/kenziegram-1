@@ -1,4 +1,4 @@
-uploadForm.addEventListener("submit", evt => evt.preventDefault());
+// uploadForm.addEventListener("submit", evt => evt.preventDefault());
 
 sendTime = {
     "after": 0
@@ -14,7 +14,7 @@ function fetchImages() {
         },
         body: JSON.stringify(sendTime),
     };
-    fetch('http://localhost:3000/latest', findNewImages)
+    fetch('/latest', findNewImages)
         .then(response => response.json())
         .then(data => {
             let imageDisplay = document.getElementById('imageDisplay')
