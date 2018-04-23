@@ -27,7 +27,6 @@ latestResponse = {
     "latestImages": [],
     "timestamp": 0,
 };
-
 app.post('/latest', (req, res) => {
     fs.readdir(path, (err, items) => {
         items.forEach(item => {

@@ -1,3 +1,5 @@
+uploadForm.addEventListener("submit", evt => evt.preventDefault());
+
 sendTime = {
     "after": 0
 };
@@ -22,15 +24,17 @@ function fetchImages() {
                 imageDisplay.appendChild(newImg);
             });
             sendTime.after = data.timestamp;
+            errors = 0;
         })
         .catch(response => {
             if (!response.ok) {
                 errors++;
+                console.log("Connection Timeout");
             }
             
         })
     startPoll = setTimeout(fetchImages, 5000);
-    if (errors >= 1) {
+    if (errors == 2) {
         clearTimeout(startPoll);
         alert("Lost connection with server!");
     }
